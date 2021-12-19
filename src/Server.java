@@ -21,7 +21,7 @@ public class Server {
     private static InitialContext ctx;
 
     public static void main(String[] args) throws NamingException, IOException,Exception {
-        String propPath = "C:\\Users\\DELL\\Documents\\RMI\\src\\application.properties";
+        String propPath = args[0];
         Properties prop = loadProperties(propPath);
         String ip=prop.getProperty("server.address");
         int port = Integer.parseInt(prop.getProperty("server.port"));
