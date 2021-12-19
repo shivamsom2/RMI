@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileReader;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -26,12 +27,15 @@ public class Server {
         String ip=prop.getProperty("server.address");
         int port = Integer.parseInt(prop.getProperty("server.port"));
         String jndiObjectName = prop.getProperty("jndi.objectName");
+        String resFilePath= prop.getProperty("resource.file.path");
         System.out.println("SERVER ADDRESS=>"+ip);
         System.out.println("SERVER PORT=>"+port);
         System.out.println("JNDI OBJECT NAME=>"+jndiObjectName);
+        System.out.println("RES FILEPATH=>"+resFilePath);
         initJNDI(ip,port);
 //        NMessage msg = new NMessage("Just A Message");
         ResponseObject response = new ResponseObject();
+        response.setFile(new File(resFilePath));
         bindJNDI(jndiObjectName, response);
         System.out.println("Started Succesfully");
         System.in.read();
